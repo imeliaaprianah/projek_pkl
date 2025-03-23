@@ -18,6 +18,13 @@ class MDataPelPD extends Model
         'surat_mohon_perubahan_daya',
         'dokumen_pd',
         'status_approved',
+        'daya_awal',
+        'daya_akhir',
+        'tanggal_input',
+        'tanggal_pembuatan_surat',
+        'tanggal_selesai',
+        'tanggal_survey',
+        'hasil_survey'
     ];
 
     // Get all data

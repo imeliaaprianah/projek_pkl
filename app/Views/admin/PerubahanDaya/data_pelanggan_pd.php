@@ -3,12 +3,14 @@
 <?= $this->section('content') ?>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
-  <div class="alert alert-success" role="alert">
-    <?= session()->getFlashdata('pesan'); ?>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('pesan'); ?>
+    </div>
+    <script>
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 3000); // Hilang setelah 3 detik
+    </script>
 <?php endif ?>
 
 <div class="col-lg-12 grid-margin stretch-card">

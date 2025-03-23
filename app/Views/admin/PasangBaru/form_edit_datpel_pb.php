@@ -14,6 +14,11 @@
                     <input type="hidden" id="id_data_pelanggan_pb" name="id_data_pelanggan_pb" value="<?= $datpel['id_data_pelanggan_pb']; ?>">
 
                     <div class="form-group">
+                        <label for="tanggal_input">Tanggal Input</label>
+                        <input type="text" class="form-control" id="tanggal_input" name="tanggal_input" value="<?= $datpel['tanggal_input']; ?>" placeholder="Tanggal Input" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="nama_pelanggan">Nama Pelanggan</label>
                         <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?= $datpel['nama_pelanggan']; ?>" placeholder="Nama Pelanggan" required>
                     </div>
@@ -21,6 +26,11 @@
                     <div class="form-group">
                         <label for="nama_pemohon">Nama Pemohon</label>
                         <input type="text" class="form-control" id="nama_pemohon" name="nama_pemohon" value="<?= $datpel['nama_pemohon']; ?>" placeholder="Nama Pemohon" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tanggal_pembuatan_surat">Tanggal Pembuatan Surat</label>
+                        <input type="text" class="form-control" id="tanggal_pembuatan_surat" name="tanggal_pembuatan_surat" value="<?= $datpel['tanggal_pembuatan_surat']; ?>" placeholder="Nama Pelanggan" required>
                     </div>
 
                     <div class="form-group">
@@ -35,6 +45,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="daya_mohon">Daya Mohon</label>
+                        <input type="text" class="form-control" id="daya_mohon" name="daya_mohon" value="<?= $datpel['daya_mohon']; ?>" placeholder="No Handphone" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="ktp">Kartu Tanda Penduduk (KTP)</label>
                         <input type="text" class="form-control" id="ktp" name="ktp" value="<?= $datpel['ktp']; ?>" placeholder="Nomor KTP" required>
                     </div>
@@ -42,6 +57,11 @@
                     <div class="form-group">
                         <label for="npwp">NPWP</label>
                         <input type="text" class="form-control" id="npwp" name="npwp" value="<?= $datpel['npwp']; ?>" placeholder="Nomor NPWP" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="titik_koordinat">Titik Koordinat</label>
+                        <input type="text" class="form-control" id="titik_koordinat" name="titik_koordinat" value="<?= $datpel['titik_koordinat']; ?>" placeholder="Nomor NPWP" required>
                     </div>
 
                     <div class="form-group">

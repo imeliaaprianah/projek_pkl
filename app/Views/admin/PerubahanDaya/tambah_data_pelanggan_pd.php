@@ -14,6 +14,11 @@
                         <?= csrf_field() ?>
 
                         <div class="form-group">
+                            <label for="tanggal_input">Tanggal Input</label>
+                            <input type="date" class="form-control" id="tanggal_input" name="tanggal_input" placeholder="Masukkan Tanggal Input" required>
+                        </div>
+
+                        <div class="form-group">
                             <label for="idpel">Id Pelanggan</label>
                             <input type="text" class="form-control" id="idpel" name="idpel" placeholder="Masukkan ID Pelanggan" required>
                         </div>
@@ -29,8 +34,23 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="tanggal_pembuatan_surat">Tanggal Pembuatan Surat</label>
+                            <input type="date" class="form-control" id="tanggal_pembuatan_surat" name="tanggal_pembuatan_surat" placeholder="Masukkan Tanggal Pembuatan Surat" required>
+                        </div>
+
+                        <div class="form-group">
                             <label>Surat Mohon Perubahan Daya</label>
                             <input type="file" name="surat_mohon_perubahan_daya" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="daya_awal">Daya Awal</label>
+                            <input type="text" class="form-control" id="daya_awal" name="daya_awal" placeholder="Masukkan Daya Awal" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="daya_akhir">Daya Akhir</label>
+                            <input type="text" class="form-control" id="daya_akhir" name="daya_akhir" placeholder="Masukkan Daya Akhir" required>
                         </div>
 
                         <div class="form-group">

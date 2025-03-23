@@ -17,7 +17,14 @@ class MDataPelPB extends Model
         'npwp',
         'alamat_pasang_baru',
         'dokumen_pb',
-        'status_approved'
+        'status_approved',
+        'daya_mohon',
+        'tanggal_input',
+        'tanggal_pembuatan_surat',
+        'titik_koordinat',
+        'tanggal_survey',
+        'tanggal_selesai',
+        'hasil_survey'
     ];
 
     // Get all data

@@ -23,6 +23,16 @@
                             required>
                     </div>
 
+                    <!-- Input Password -->
+                    <div class="form-group mb-3">
+                        <label for="password" class="form-label">Password (kosongkan jika tidak ingin mengubah):</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control">
+                    </div>
+
                     <!-- Select Level -->
                     <div class="form-group mb-3">
                         <label for="level" class="form-label">Level:</label>
@@ -36,6 +46,7 @@
                     <!-- Tombol Simpan -->
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-inverse-info" style="padding: 10px 15px;">Simpan</button>
+                        <a href="<?= base_url('/pengguna') ?>" class="btn btn-secondary" style="padding: 10px 15px;">Kembali</a>
                     </div>
                 </form>
             </div>

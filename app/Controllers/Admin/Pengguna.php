@@ -33,7 +33,7 @@ class Pengguna extends BaseController
     public function simpan()
     {
         $pwd = $this->request->getVar('password');
-        $hash_password = password_hash("$pwd", PASSWORD_BCRYPT);
+        $hash_password = password_hash($pwd, PASSWORD_DEFAULT);
         $this->akun->insert([
             'username' => $this->request->getPost('username'),
             //hash password

@@ -10,6 +10,11 @@
                 <p class="card-description"></p>
                 <form>
                     <div class="form-group">
+                        <label for="tanggal_input">Tanggal Input</label>
+                        <input type="text" class="form-control" id="tanggal_input" name="tanggal_input" value="<?= $data['tanggal_input'] ?>" readonly>
+                    </div>
+
+                    <div class="form-group">
                         <label for="idpel">Id Pelanggan</label>
                         <input type="text" class="form-control" id="idpel" name="idpel" value="<?= $data['idpel'] ?>" readonly>
                     </div>
@@ -25,12 +30,27 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="tanggal_pembuatan_surat">Tanggal Pembuatan Surat</label>
+                        <input type="text" class="form-control" id="tanggal_pembuatan_surat" name="tanggal_pembuatan_surat" value="<?= $data['tanggal_pembuatan_surat'] ?>" readonly>
+                    </div>
+
+                    <div class="form-group">
                         <label>Surat Mohon Perubahan Daya</label>
                         <div>
                             <a href="<?= base_url('uploads/' . $data['surat_mohon_perubahan_daya']) ?>" target="_blank" class="btn btn-info btn-sm">
                                 <i class="fa fa-download"></i> Lihat Surat
                             </a>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="daya_awal">Daya Awal</label>
+                        <input type="text" class="form-control" id="daya_awal" name="daya_awal" value="<?= $data['daya_awal'] ?>" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="daya_akhir">Daya Akhir</label>
+                        <input type="text" class="form-control" id="daya_akhir" name="daya_akhir" value="<?= $data['daya_akhir'] ?>" readonly>
                     </div>
 
                     <div class="form-group">

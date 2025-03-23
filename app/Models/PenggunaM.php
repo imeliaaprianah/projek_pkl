@@ -43,6 +43,6 @@ class PenggunaM extends Model
     // Get data by username (for login)
     public function getLogin($username)
     {
-        return $this->where('username', $username)->first();
+        return $this->where(['username'=> $username])->first();
     }
 }

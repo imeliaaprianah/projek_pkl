@@ -12,6 +12,11 @@
                     <?= csrf_field() ?>
 
                     <div class="form-group">
+                        <label for="tanggal_input">Tanggal Input</label>
+                        <input type="date" class="form-control" id="tanggal_input" name="tanggal_input" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="nama_pelanggan">Nama Pelanggan</label>
                         <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" required>
                     </div>
@@ -19,6 +24,11 @@
                     <div class="form-group">
                         <label for="nama_pemohon">Nama Pemohon</label>
                         <input type="text" class="form-control" id="nama_pemohon" name="nama_pemohon" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tanggal_pembuatan_surat">Tanggal Pembuatan Surat</label>
+                        <input type="date" class="form-control" id="tanggal_pembuatan_surat" name="tanggal_pembuatan_surat" required>
                     </div>
 
                     <div class="form-group">
@@ -32,6 +42,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="daya_mohon">Daya Mohon</label>
+                        <input type="text" class="form-control" id="daya_mohon" name="daya_mohon" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="ktp">KTP</label>
                         <input type="text" class="form-control" id="ktp" name="ktp" required>
                     </div>
@@ -39,6 +54,11 @@
                     <div class="form-group">
                         <label for="npwp">NPWP</label>
                         <input type="text" class="form-control" id="npwp" name="npwp" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="titik_koordinat">Titik Koordinat</label>
+                        <input type="text" class="form-control" id="titik_koordinat" name="titik_koordinat" required>
                     </div>
 
                     <div class="form-group">

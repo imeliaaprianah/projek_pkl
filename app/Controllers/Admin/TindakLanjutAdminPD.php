@@ -35,14 +35,20 @@ class TindakLanjutAdminPD extends BaseController
 
     public function update($id)
     {
-        // // Validasi input
-        // $validation = $this->validate([
-        //     'dokumen' => 'required|uploaded[dokumen]|max_size[dokumen,2048]|ext_in[dokumen,pdf,doc,docx]',
-        // ]);
+        // Validasi input
+        $validation = $this->validate([
+            'dokumen_pd' => [
+                'uploaded[dokumen_pd]',  // File harus diunggah
+                'max_size[dokumen_pd,2048]', // Maksimal 2MB
+                'ext_in[dokumen_pd,pdf,jpg,png]', // Hanya PDF, JPG, PNG
+            ],
+            'hasil_survey' => 'required', 
+            'status_approved' => 'required'
+        ]);
 
-        // if (!$validation) {
-        //     return redirect()->back()->withInput()->with('validation', $this->validator);
-        // }
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('error', 'Validasi gagal, periksa input Anda.');
+        }
 
         // Ambil data pelanggan berdasarkan ID
         $data = $this->datpel->find($id);
@@ -62,9 +68,13 @@ class TindakLanjutAdminPD extends BaseController
             $this->datpel->update($id, ['dokumen_pd' => $newFileName]);
         }
         $this->datpel->update($id, ['status_approved' => $this->request->getPost('status_approved')]);
+        $this->datpel->update($id, [
 
+            'hasil_survey' => $this->request->getPost('hasil_survey'),
+            'tanggal_survey' => $this->request->getPost('tanggal_survey'),
+        ]);
         // Redirect ke halaman utama dengan pesan sukses
-        return redirect()->to('/tindak-lanjut-pd')->with('pesan', 'Dokumen berhasil ditambahkan');
+        return redirect()->to('/tindak-lanjut-pd')->with('pesan', 'Data berhasil diperbarui');
     }
 
     public function detail($id)
@@ -91,5 +101,11 @@ class TindakLanjutAdminPD extends BaseController
         }
 
         throw new \CodeIgniter\Exceptions\PageNotFoundException('File not found');
+    }
+
+    public function delete($id)
+    {
+        $this->datpel->delete($id);
+        return redirect()->to('/tindak-lanjut-pd')->with('pesan', 'Data Berhasil Dihapus !!');
     }
 }

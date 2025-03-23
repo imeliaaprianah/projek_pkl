@@ -23,6 +23,7 @@ class SelesaiPB extends BaseController
         return view('admin/PasangBaru/selesai_pb', $data);
     }
 
+
     public function detail($id)
     {
         // Ambil data pelanggan berdasarkan ID

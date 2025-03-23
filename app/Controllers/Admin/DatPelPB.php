@@ -29,23 +29,30 @@ class DatPelPB extends BaseController
 
     public function simpan()
     {
-        // Validasi input
         $validation = $this->validate([
             'nama_pelanggan' => 'required',
             'nama_pemohon' => 'required',
-            'surat_mohon_pasang_baru' => 'uploaded[surat_mohon_pasang_baru]|max_size[surat_mohon_pasang_baru,2048]|ext_in[surat_mohon_pasang_baru,pdf]',
             'no_handphone' => 'required|numeric',
             'ktp' => 'required|numeric',
             'npwp' => 'required|numeric',
             'alamat_pasang_baru' => 'required',
+            'tanggal_input' => 'required|valid_date',
+            'tanggal_pembuatan_surat' => 'required|valid_date',
+            'titik_koordinat' => 'required',
+            'daya_mohon' => 'required|numeric',
+            'surat_mohon_pasang_baru' => [
+                'uploaded[surat_mohon_pasang_baru]',  // File harus diunggah
+                'max_size[surat_mohon_pasang_baru,2048]', // Maks 2MB
+                'ext_in[surat_mohon_pasang_baru,pdf,jpg,png]', // Hanya PDF, JPG, PNG
+            ]
         ]);
-
         if (!$validation) {
-            return redirect()->back()->withInput()->with('validation', $this->validator);
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data');
         }
 
-        // Proses file unggahan
         $file = $this->request->getFile('surat_mohon_pasang_baru');
+        $newFileName = '';
+
         if ($file->isValid() && !$file->hasMoved()) {
             $newFileName = $file->getRandomName();
             $file->move(WRITEPATH . 'uploads', $newFileName);
@@ -53,7 +60,6 @@ class DatPelPB extends BaseController
             return redirect()->back()->withInput()->with('error', 'Gagal mengunggah file');
         }
 
-        // Simpan data ke database
         $this->datpel->save([
             'nama_pelanggan' => $this->request->getPost('nama_pelanggan'),
             'nama_pemohon' => $this->request->getPost('nama_pemohon'),
@@ -62,11 +68,15 @@ class DatPelPB extends BaseController
             'ktp' => $this->request->getPost('ktp'),
             'npwp' => $this->request->getPost('npwp'),
             'alamat_pasang_baru' => $this->request->getPost('alamat_pasang_baru'),
+            'tanggal_input' => $this->request->getPost('tanggal_input'),
+            'tanggal_pembuatan_surat' => $this->request->getPost('tanggal_pembuatan_surat'),
+            'titik_koordinat' => $this->request->getPost('titik_koordinat'),
+            'daya_mohon' => $this->request->getPost('daya_mohon')
         ]);
 
-        // Redirect ke halaman utama dengan pesan sukses
         return redirect()->to('/data-pelanggan-pb')->with('pesan', 'Data berhasil ditambahkan');
     }
+
 
     public function detail($id)
     {
@@ -97,15 +107,18 @@ class DatPelPB extends BaseController
         $validation = $this->validate([
             'nama_pelanggan' => 'required',
             'nama_pemohon' => 'required',
-            'surat_mohon_pasang_baru' => 'if_exist|uploaded[surat_mohon_pasang_baru]|max_size[surat_mohon_pasang_baru,2048]|ext_in[surat_mohon_pasang_baru,pdf]',
             'no_handphone' => 'required|numeric',
             'ktp' => 'required|numeric',
             'npwp' => 'required|numeric',
             'alamat_pasang_baru' => 'required',
+            'tanggal_input' => 'required|valid_date',
+            'tanggal_pembuatan_surat' => 'required|valid_date',
+            'titik_koordinat' => 'required',
+            'daya_mohon' => 'required|numeric',
         ]);
 
         if (!$validation) {
-            return redirect()->back()->withInput()->with('validation', $this->validator);
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate data');
         }
 
         // Ambil data pelanggan berdasarkan ID
@@ -114,12 +127,13 @@ class DatPelPB extends BaseController
             return redirect()->to('/data-pelanggan-pb')->with('error', 'Data tidak ditemukan');
         }
 
-        // Proses file unggahan jika ada file baru
+        // Ambil file yang diunggah
         $file = $this->request->getFile('surat_mohon_pasang_baru');
-        $newFileName = $data['surat_mohon_pasang_baru']; // Gunakan nama file lama jika tidak ada file baru
+        $newFileName = $data['surat_mohon_pasang_baru']; // Gunakan nama file lama sebagai default
+
         if ($file && $file->isValid() && !$file->hasMoved()) {
             // Hapus file lama jika ada
-            if (file_exists(WRITEPATH . 'uploads/' . $data['surat_mohon_pasang_baru'])) {
+            if (!empty($data['surat_mohon_pasang_baru']) && file_exists(WRITEPATH . 'uploads/' . $data['surat_mohon_pasang_baru'])) {
                 unlink(WRITEPATH . 'uploads/' . $data['surat_mohon_pasang_baru']);
             }
 
@@ -128,16 +142,27 @@ class DatPelPB extends BaseController
             $file->move(WRITEPATH . 'uploads', $newFileName);
         }
 
-        // Update data di database
-        $this->datpel->update($id, [
+        // Data yang akan diupdate
+        $updateData = [
             'nama_pelanggan' => $this->request->getPost('nama_pelanggan'),
             'nama_pemohon' => $this->request->getPost('nama_pemohon'),
-            'surat_mohon_pasang_baru' => $newFileName,
             'no_handphone' => $this->request->getPost('no_handphone'),
             'ktp' => $this->request->getPost('ktp'),
             'npwp' => $this->request->getPost('npwp'),
             'alamat_pasang_baru' => $this->request->getPost('alamat_pasang_baru'),
-        ]);
+            'tanggal_input' => $this->request->getPost('tanggal_input'),
+            'tanggal_pembuatan_surat' => $this->request->getPost('tanggal_pembuatan_surat'),
+            'titik_koordinat' => $this->request->getPost('titik_koordinat'),
+            'daya_mohon' => $this->request->getPost('daya_mohon'),
+        ];
+
+        // Hanya update file jika ada file baru yang diunggah
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $updateData['surat_mohon_pasang_baru'] = $newFileName;
+        }
+
+        // Update data di database
+        $this->datpel->update($id, $updateData);
 
         // Redirect ke halaman utama dengan pesan sukses
         return redirect()->to('/data-pelanggan-pb')->with('pesan', 'Data berhasil diedit');
