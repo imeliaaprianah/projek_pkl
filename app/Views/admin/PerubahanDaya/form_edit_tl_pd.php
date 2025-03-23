@@ -76,21 +76,21 @@
 
                     <div class="form-group">
                         <label>Dokumen Perubahan Daya</label>
-                        <input type="file" name="dokumen" class="form-control">
+                        <input type="file" name="dokumen_pd" class="form-control">
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="hasil_survey" class="form-label">Hasil Survey</label>
-                        <select id="hasil_survey" name="hasil_survey" class="form-control" required>
+                        <select id="hasil_survey" name="hasil_survey" class="form-control text-dark" required>
                             <option value="">Pilih Hasil Survey</option>
                             <option value="perluasan" <?= (isset($akun['hasil_survey']) && $akun['hasil_survey'] == 'perluasan') ? 'selected' : ''; ?>>Perluasan</option>
                             <option value="non_perluasan" <?= (isset($akun['hasil_survey']) && $akun['hasil_survey'] == 'non_perluasan') ? 'selected' : ''; ?>>Non Perluasan</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="status_approved">Status Approved</label>
-                        <select class="form-control" id="status_approved" name="status_approved">
+                        <select class="form-control text-dark" id="status_approved" name="status_approved">
                             <option value="pending" <?= !isset($datpel['status_approved']) || $datpel['status_approved'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
                             <option value="sudah_sesuai" <?= isset($datpel['status_approved']) && $datpel['status_approved'] == 'sudah_sesuai' ? 'selected' : ''; ?>>Sudah Sesuai</option>
                             <option value="belum_sesuai" <?= isset($datpel['status_approved']) && $datpel['status_approved'] == 'belum_sesuai' ? 'selected' : ''; ?>>Belum Sesuai</option>
